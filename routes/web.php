@@ -43,9 +43,6 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','role:admin'])->group
     Route::get('/stock/create', [App\Http\Controllers\Admin\StockController::class, 'create'])->name('stock.create');
     Route::post('/stock', [App\Http\Controllers\Admin\StockController::class, 'store'])->name('stock.store');
     Route::resource('shippings', App\Http\Controllers\Admin\ShippingServiceController::class);
-});
-
-Route::prefix('admin')->name('admin.')->middleware(['auth','role:admin'])->group(function () { 
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard'); 
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index'); 
     Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show'); 

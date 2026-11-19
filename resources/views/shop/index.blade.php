@@ -19,10 +19,9 @@
     <div class="card filters">
         <form method="GET">
             <div class="row">
-                <label style="flex:2">Cari produk<input name="q" value="{{ request('q') }}"
-                        placeholder="Nama produk atau SKU"></label>
-                        <label>Kategori<select name="category">
-                        <option value="">Semua kategori</option>
+                <label style="flex:2">Cari produk<input name="q" value="{{ request('q') }}"placeholder="Nama produk atau SKU"></label>
+                <label>Kategori<select name="category">
+                    <option value="">Semua kategori</option>
                         @foreach($categories as $category)
                         <option value="{{ $category->id }}" 
                         @selected(request('category') == $category->id)>{{ $category->name }}</option>
