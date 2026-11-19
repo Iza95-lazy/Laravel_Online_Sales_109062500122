@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\ProductCatalogController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\AuthController; 
@@ -38,6 +39,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','role:admin'])->group
     Route::post('/stock', [App\Http\Controllers\Admin\StockController::class, 'store'])->name('stock.store');
     Route::resource('shippings', App\Http\Controllers\Admin\ShippingServiceController::class);
 });
+
+Route::get('/', [ProductCatalogController::class, 'index'])->name('shop.index');
+Route::get('/produk/{product:slug}', [ProductCatalogController::class, 'show'])->name('shop.show');
 
 Route::post('/logout', function (Request $request) {
     Auth::logout();
