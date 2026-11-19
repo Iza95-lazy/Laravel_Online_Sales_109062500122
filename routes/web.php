@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductCatalogController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
@@ -39,6 +40,13 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','role:admin'])->group
     Route::post('/stock', [App\Http\Controllers\Admin\StockController::class, 'store'])->name('stock.store');
     Route::resource('shippings', App\Http\Controllers\Admin\ShippingServiceController::class);
 });
+
+Route::middleware(['auth','role:customer'])->group(function () { 
+    Route::get('/keranjang', [CartController::class, 'index'])->name('cart.index'); 
+    Route::post('/keranjang/{product}', [CartController::class, 'store'])->name('cart.store'); 
+    Route::patch('/keranjang/{product}', [CartController::class, 'update'])->name('cart.update'); 
+    Route::delete('/keranjang/{product}', [CartController::class, 'destroy'])->name('cart.destroy'); 
+}); 
 
 Route::get('/', [ProductCatalogController::class, 'index'])->name('shop.index');
 Route::get('/produk/{product:slug}', [ProductCatalogController::class, 'show'])->name('shop.show');
