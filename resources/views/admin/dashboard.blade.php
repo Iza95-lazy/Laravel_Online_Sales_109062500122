@@ -8,6 +8,9 @@
     <p>Pilihan sederhana. Belanja lebih nyaman.</p>
     <nav>
         <span>ruangbelanja. Jelajahi Produk Dashboard Admin Halo, Administrator</span>
+        <a href="{{ route('shop.index') }}">Jelajahi Produk</a> 
+        <a href="{{ route('admin.categories.index') }}">Kelola Kategori</a>  
+        <a href="{{ route('admin.products.index') }}">Kelola Produk</a>
         <form method="POST" action="{{ route('logout') }}" style="display:inline;">
             @csrf
             <button type="submit">Keluar</button>
