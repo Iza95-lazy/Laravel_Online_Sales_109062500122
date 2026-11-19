@@ -1,4 +1,6 @@
 <?php
+use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\CustomerOrderController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CartController;
@@ -41,6 +43,15 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','role:admin'])->group
     Route::get('/stock/create', [App\Http\Controllers\Admin\StockController::class, 'create'])->name('stock.create');
     Route::post('/stock', [App\Http\Controllers\Admin\StockController::class, 'store'])->name('stock.store');
     Route::resource('shippings', App\Http\Controllers\Admin\ShippingServiceController::class);
+});
+
+Route::prefix('admin')->name('admin.')->middleware(['auth','role:admin'])->group(function () { 
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard'); 
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index'); 
+    Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show'); 
+    Route::patch('/orders/{order}/confirm', [OrderController::class, 'confirm'])->name('orders.confirm'); 
+    Route::patch('/orders/{order}/status', [OrderController::class, 'updateStatus'])->name('orders.status'); 
+    Route::patch('/orders/{order}/cancel', [OrderController::class, 'cancel'])->name('orders.cancel'); 
 });
 
 Route::middleware(['auth','role:customer'])->group(function () { 
