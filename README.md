@@ -61,12 +61,14 @@
 
 ## Hasil git tag
 m0-setup
+m0-auth-role
 m2-master-product
 m3-inventory-shipping
 m4-storefront
 m5-cart
 m6-checkout
 m7-order-admin
+m8-final
 
 ## About Laravel
 
