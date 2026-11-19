@@ -1,4 +1,6 @@
 <?php
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\AuthController; 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -23,6 +25,14 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/', function () {
         return view('admin.dashboard'); // Sesuaikan dengan view admin Anda
     })->name('admin.dashboard');
+});
+
+Route::prefix('admin')->name('admin.')->middleware(['auth','role:admin'])->group(function () { 
+    Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index'); 
+    Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store'); 
+    Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('categories.update'); 
+    Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy'); 
+    Route::resource('products', ProductController::class)->except('show'); 
 });
 
 Route::post('/logout', function (Request $request) {
