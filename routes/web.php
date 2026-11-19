@@ -33,6 +33,10 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','role:admin'])->group
     Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('categories.update'); 
     Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy'); 
     Route::resource('products', ProductController::class)->except('show'); 
+    Route::get('/stock', [App\Http\Controllers\Admin\StockController::class, 'index'])->name('stock.index');
+    Route::get('/stock/create', [App\Http\Controllers\Admin\StockController::class, 'create'])->name('stock.create');
+    Route::post('/stock', [App\Http\Controllers\Admin\StockController::class, 'store'])->name('stock.store');
+    Route::resource('shippings', App\Http\Controllers\Admin\ShippingServiceController::class);
 });
 
 Route::post('/logout', function (Request $request) {

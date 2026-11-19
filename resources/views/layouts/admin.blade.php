@@ -20,7 +20,7 @@ asset('css/store.css') }}">
                                 ['admin.categories.index', 'Kategori'],
                                 ['admin.products.index', 'Produk'],
                                 ['admin.stock.index','Stok & Barang Masuk'],
-                                ['admin.shipping.index', 'Ekspedisi'],
+                                ['admin.shippings.index', 'Ekspedisi'],
                                 ['admin.orders.index', 'Transaksi']
                             ] as [$route, $label])
                             @if(Route::has($route))<a href="{{ route($route) }}" @if(
