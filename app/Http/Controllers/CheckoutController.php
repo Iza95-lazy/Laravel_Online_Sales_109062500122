@@ -102,6 +102,7 @@ class CheckoutController extends Controller
             ]); 
  
             foreach ($cart as $productId => $quantity) { 
+                /** @var \App\Models\Product $product */
                 $product = $lockedProducts->get($productId); 
                 $lineTotal = (float) $product->price * $quantity; 
  
