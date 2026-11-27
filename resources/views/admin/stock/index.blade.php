@@ -32,8 +32,6 @@
                     <th>Produk</th>
                     <th>Tipe</th>
                     <th>Qty</th>
-                    Modul Praktikum Laravel Penjualan Online Kompleks | Git Milestones
-                    29
                     <th>Referensi</th>
                     <th>User</th>
                 </tr>
